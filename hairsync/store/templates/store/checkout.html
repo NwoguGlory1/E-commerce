@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ {% load static %}
+ <meta charset="utf-8">
+ <meta content="width=device-width, initial-scale=1.0" name="viewport">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ 
+ <title>HairSynC</title>
+ <meta content="" name="description">
+ <meta content="" name="keywords">
+
+ <!-- Favicons -->
+ <link href="{% static 'store/images/favicon.png' %}" rel="icon">
+
+ <!-- Template Main CSS File -->
+ <link rel="stylesheet" href="{% static 'store/css/style.css' %}">
+
+ <!-- Template Main CSS File -->
+ <link href="{% static 'store/css/all.min.css' %}" rel="stylesheet">
+ <link href="{% static 'store/css/bootstrap.min.css' %}" rel="stylesheet">
+ <link href="{% static 'store/css/bootstrap-icons.css' %}" rel="stylesheet">
+  
+</head>
+<body>
+<!--Navbar-->
+<nav class="navbar navbar-expand-xl navbar-dark" id="navbar">
+ <!-- Navbar content -->
+</nav>
+  
+<body class="bg-light">
+ <div class="container">
+      <div class="py-5 text-center">
+          <h2 style="color: goldenrod;"> Checkout Page </style></h2>
+          <br><br>
+          <div class="form">
+                <!-- Cart items -->
+                <h3>Your Cart</h3>
+                <table class="table cart-table">
+                 <thead>
+                    <tr>
+                      <th scope="col">Product</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Price ($)</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                    {% for item in cart_items %}
+                    <tr>
+                      <td>{{ item.product.name }}</td>
+                      <td>{{ item.quantity }}</td>
+                      <td>{{ item.total_price }}</td>
+                    </tr>
+                    {% endfor %}
+                 </tbody>
+                </table>
+                <p>Total Amount: ${{ total_amount }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="container checkout">
+            <!-- Add Address Form -->
+            {% if not request.user.has_saved_address %}
+            <form method="post" action="{% url 'store:add_address' %}" id="addAddressForm" novalidate>
+                {% csrf_token %}
+                <button type="submit" style="background-color: #29f700;">Additional Details</button>
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <label for="streetAddress" class="form-label">Street Address</label>
+                        <input type="text" class="form-control" id="streetAddress" name="street_address" placeholder="Input your address" required>
+                        <div class="invalid-feedback">Valid address is required.</div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="town" class="form-label">Town</label>
+                        <input type="text" class="form-control" id="town" name="town" required>
+                        <div class="invalid-feedback">Valid town is required.</div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="zipcode" class="form-label">Zipcode</label>
+                        <input type="text" class="form-control" id="zipcode" name="zipcode" required>
+                        <div class="invalid-feedback">Valid zipcode is required.</div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="county" class="form-label">County</label>
+                        <input type="text" class="form-control" id="county" name="county" required>
+                        <div class="invalid-feedback">Valid county is required.</div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="phoneNumber1" class="form-label">Phone Number 1</label>
+                        <input type="text" class="form-control" id="phoneNumber1" name="phone_number_1" required>
+                        <div class="invalid-feedback">Valid phone number is required.</div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="phoneNumber2" class="form-label">Phone Number 2</label>
+                        <input type="text" class="form-control" id="phoneNumber2" name="phone_number_2" required>
+                        <div class="invalid-feedback">Valid phone number is required.</div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="additionalDetails" class="form-label">Any Other Details</label>
+                        <input type="text" class="form-control" id="additionalDetails" name="additional_details">
+                    </div>
+                </div>
+            </form>
+            {% endif %}
+        
+            <!-- Select Shipping Option -->
+            <form method="post" action="{% url 'store:process_checkout' %}" id="checkoutForm" novalidate>
+                {% csrf_token %}
+                <button type="submit" style="background-color: #29f700;">Payment Details</button>
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                      <label for="shippingCompany" class="form-label">Available Delivery Option(Deliver to me)</label>
+                        <!-- <label for="shippingCompany" class="form-label">Choose Shipping Company</label> -->
+                        <select id="shippingCompany" class="form-select" name="shipping_company" required>
+                            <option selected>Choose Shipping Company</option>
+                            <option value="company1">Shipping Company A</option>
+                            <option value="company2">Shipping Company B</option>
+                        </select>                
+                        <div class="invalid-feedback">Valid shipping company is required.</div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="paymentOption" class="form-label">Choose Payment Option</label>
+                        <select id="paymentOption" class="form-select" name="payment_option" required>
+                            <option selected>Click to choose</option>
+                            <option value="flutterwave">Flutterwave</option>
+                            <option value="paystack">Paystack</option>
+                        </select>                
+                        <div class="invalid-feedback">Valid payment option is required.</div>
+                    </div>
+                </div>
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input id="saveInfo" type="checkbox" class="form-check-input" name="save_info" checked>
+                            <label for="saveInfo" class="form-check-label" style="align-items: left;">Save this info</label>
+                        </div>
+                    </div>
+                    <div style="text-align: right; width: 100%; margin-right: 5em; margin-top: 30px;">
+                      <a href="{% url 'store:success' %}" class="checkout"><b>SUBMIT</b></a>
+                    </div>
+                  </div>
+                </div>
+            </form>
+        </div>        
+</body>
+
+<!--Footer-->
+<footer class="bg-dark text-white pt-5 pb-4">
+  <div class="container text-center text-md-left">
+    <div class="row text-center text-md text-md-left">
+      <div class="col-md-3 col-lg-3 col-xl-3 mx auto mt-3">
+        <h5 class="mb-4 font-weight-bold text-warning">ABOUT HairSynC</a>
+          <h6> Built by Daraja </h6>
+        </div>
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Products</h5>
+          <p>
+            <a href="{% url 'store:products' %}" class="text-white" style="text-decoration: none;">All Products</a>
+          </p>
+          <p>
+            <a href="{% url 'store:straight' %}" class="text-white" style="text-decoration: none;">Straight</a>
+          </p>
+          <p>
+            <a href="{% url 'store:wavy' %}" class="text-white" style="text-decoration: none;">Wavy</a>
+          </p>
+          <p>
+            <a href="{% url 'store:coily' %}" class="text-white" style="text-decoration: none;">Coily</a>
+          </p>
+          <p>
+            <a href="{% url 'store:hair_products' %}" class="text-white" style="text-decoration: none;">Hair Products</a>
+          </p>
+        </div>
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Useful Links</h5>
+          <p>
+            <a href="#" class="text-white" style="text-decoration: none;">Terms and Conditions</a>
+          </p>
+          <p>
+            <a href="#" class="text-white" style="text-decoration: none;">Become an Affiliates</a>
+          </p>
+          <p>
+            <a href="#" class="text-white" style="text-decoration: none;">Return Policy</a>
+          </p>
+          <p>
+            <a href="{% url 'store:about_us' %}" class="text-white" style="text-decoration: none;">About Us</a>
+          </p>
+        </div>
+        <div class="col-md-4 col-lg-3 col-xl-2 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Contact</h5>
+          <p>
+            <i class="fas fa-home mr-3"></i>Lagos, Nigeria
+          </p>
+          <p>
+            <i class="fas fa-envelope mr-3"></i>HairSynC@gmail.com
+          </p>
+          <p>
+            <i class="fas fa-phone mr-3"></i>+234-7031-302-044
+          </p>
+          <p>
+            <i class="fas fa-print mr-3"></i>+234-7032-179-028
+          </p>
+        </div>
+    </div>
+    <hr class="mb-4">
+    <div class="row align-items-center">
+      <div class="col-md-7 col-lg-8">
+        <p>Copyrights ©2024 All rights reserved by:
+          <a href="#" style="text-decoration: none;">
+            <strong class="text-warning">HairSynC</strong>
+          </a></p>
+      </div>
+      <div class="col-md-5 col-lg-4">
+        <div class="text-center text-md-right">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+              <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-facebook"></i></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-twitter"></i></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://github.com/NwoguGlory1/HairSynC" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-github"></i></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-google-plus"></i></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-linkedin-in"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+{% if messages %}
+<!-- Iterate over Django messages -->
+{% for message in messages %}
+    <!-- Display messages using SweetAlert.js -->
+    <script>
+        Swal.fire({
+            icon: '{{ message.tags }}', // Use the message tags as SweetAlert.js icons
+            title: '{{ message.tags|capfirst }}', // Capitalize the first letter of the tag
+            text: '{{ message }}',
+            timer: 10000, // Automatically close after 10 seconds
+            showConfirmButton: false, // Do not show a confirmation button
+            position: 'top-end', // Show notifications at the top-end
+            // Add more options as needed
+        });
+    </script>
+{% endfor %}
+{% endif %}
+<!-- Include SweetAlert.js -->
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+ <script src="{% static 'store/js/bootstrap.bundle.min.js' %}"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"></script>
+
+<!-- Populate Shipping Options -->
+<script>
+ document.addEventListener('DOMContentLoaded', function() {
+    fetch('{% url "store:get_shipping_options" %}')
+      .then(response => response.json())
+      .then(data => {
+        const select = document.getElementById('shippingOption');
+        data.forEach(option => {
+          const optionElement = document.createElement('option');
+          optionElement.value = option.id;
+          optionElement.textContent = `${option.name} - ${option.price} - ${option.delivery_time}`;
+          select.appendChild(optionElement);
+        });
+      })
+      .catch(error => console.error('Error fetching shipping options:', error));
+ });
+</script>
+
+<!-- Form Validation Script -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      // Function to validate form fields
+      function validateForm(form) {
+          var requiredFields = form.querySelectorAll('[required]');
+          var missingFields = [];
+  
+          requiredFields.forEach(function(field) {
+              if (!field.value) {
+                  missingFields.push(field.name);
+              }
+          });
+  
+          if (missingFields.length > 0) {
+              alert('Please fill out the following fields: ' + missingFields.join(', '));
+              return false; // Prevent form submission
+          }
+          return true; // All required fields are filled out
+      }
+  
+      // Attach event listeners to both forms
+      document.getElementById('addAddressForm').addEventListener('submit', function(event) {
+          if (!validateForm(this)) {
+              event.preventDefault();
+          }
+      });
+  
+      document.getElementById('checkoutForm').addEventListener('submit', function(event) {
+          if (!validateForm(this)) {
+              event.preventDefault();
+          }
+      });
+  });
+  </script>
+</html>
