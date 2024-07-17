@@ -11,7 +11,6 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
-from authlib.integrations.django_client import OAuth
 from django.conf import settings
 from django.urls import reverse
 from urllib.parse import quote_plus, urlencode
@@ -167,6 +166,7 @@ def check_user_authentication(request):
 
 """THE START OF PRODUCTS VIEWS AND MANAGEMENT"""
 @require_http_methods(["GET"])
+#Renders all product page correctly
 def list_all_products(request):
     all_products = Product.objects.all()
 
@@ -179,6 +179,7 @@ def list_all_products(request):
 
 
 @require_http_methods(["GET"])
+#not able to fetch it
 def fetch_product_by_id(request, id):
     try:
         unique_product = Product.objects.get(product_id=id)
@@ -231,6 +232,7 @@ def wavyhair(request):
 
 @csrf_exempt
 @require_http_methods(["POST"])
+#works
 def create_new_product(request):
     try:
         name = request.POST['name']
