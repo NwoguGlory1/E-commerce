@@ -58,8 +58,6 @@ height: 80%;
     border-top-color: rgba(0,0,0,.42);
     border-bottom-color: rgba(0,0,0,.42);
     box-shadow: none !important;
-    /*border: none;
-    border-bottom: 1px solid;*/
     border-radius: 4px 4px 0 0;
 }
 
@@ -227,7 +225,7 @@ section{
     color: white;
 }
 
-/****Wavy, Coily, Straight HairProducts****/
+/****Wavy, Coily, Straight, HairProducts****/
 
 .hairs {
     display: grid;
@@ -311,7 +309,6 @@ section {
 
 .box{
     width: 80% !important;
-    /*background: red; */
     margin-top: 10px;
 }
 
@@ -336,7 +333,6 @@ form{
     background-color: white;
     border: none !important;
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
     padding: 20px;
@@ -354,9 +350,6 @@ form{
 .heading{
     background-color: goldenrod !important; 
 }
-/* th{
-    padding-left: 20px;
-} */
 
 
 /****Userprofile****/
@@ -374,8 +367,8 @@ form{
 /* Checkout*/
 
 .form-check-input:checked {
-    background-color: black; /*Checked color*/
-    border-color: goldenrod; /* Checked border color */
+    background-color: black;
+    border-color: goldenrod;
    }
 
 .disabled {
@@ -389,15 +382,11 @@ form{
     background-color: white;
     border: none !important;
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
     padding: 20px;
 }
 
-/* .cart-table{
-    border: 1px solid #000; 
-} */
    /* Custom checkmark */
 .form-check-input:checked::before {
     content: "2713"; 
@@ -406,7 +395,7 @@ form{
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 1.2em;
-    color: goldenrod !important; /* Checkmark color */
+    color: goldenrod !important;
 }  
 
    /* Hide the default checkmark */
