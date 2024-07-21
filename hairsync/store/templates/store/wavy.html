@@ -53,9 +53,6 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'store:hair_products' %}">Hair Products</a>
           </li>
-            <!-- <li class="nav-item">
-            <a class="nav-link" href="#contact">Contact</a>
-          </li>  -->
         </ul>
         <form class="search">
           <input type="search" placeholder="Search" aria-label="Search">
@@ -64,7 +61,6 @@
         <!-- cart icon on the nav bar -->
         <a href="/store/users/cart/" class="cart-icon">
         <i class="fa-solid fa-bag-shopping"></i>
-        <!-- <span class="quantity">0</span> This will display the number of items in the cart -->
         </a>
         {% if user.is_authenticated %}
         <li class="nav-item">
