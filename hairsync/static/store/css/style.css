@@ -58,8 +58,6 @@ height: 80%;
     border-top-color: rgba(0,0,0,.42);
     border-bottom-color: rgba(0,0,0,.42);
     box-shadow: none !important;
-    /*border: none;
-    border-bottom: 1px solid;*/
     border-radius: 4px 4px 0 0;
 }
 
@@ -152,9 +150,6 @@ form.search {
     border-radius:15px;
 }
 
-/* .btn search{
-    margin-top: 3px;
-} */
 
 .log{
     margin-right: 4px !important ;
@@ -214,12 +209,6 @@ section{
     background-color: white;
 }
 
-/* .btn signin button{
-    border-radius: 50px;
-    width: 10rem;
-} */
-
-
 
 /****About****/
 #about{
@@ -236,7 +225,7 @@ section{
     color: white;
 }
 
-/****Wavy, Coily, Straight HairProducts****/
+/****Wavy, Coily, Straight, HairProducts****/
 
 .hairs {
     display: grid;
@@ -279,15 +268,6 @@ section {
     color: black;
 }
 
-/* .pro-container{
-    display: grid;
-    grid-template-columns: repeat(
-    auto-fill,
-    minmax(200px, 1fr)
-  ); 
-  gap: 100px;
-  /* min-height: 100vh; */
-
 .card > img {
     /* width: 200px; */
     height: 250px;
@@ -295,25 +275,8 @@ section {
     border-radius: 20px !important;
   }
 
-/* .pro-container img {
-    width: 100%;
-    height: auto;
-  } */
-
-
-/*#wavy, #coily, #hairproducts, #straight .pro-container{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 50px;
-    padding: 3em 5em;
-    justify-content: center;
-} */
 
 .card{
-    /*display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-     gap: 50px; */
-    /* position: relative; */
     width: 250px;
     height: 500px;
     background-color: #e5e5e5 !important;
@@ -329,10 +292,6 @@ section {
     justify-content: center;
     align-items: center;
     margin: 25px 2em;
-    /* margin: 20px 60px ; */
-    /* display: flex; */
-    /* flex-wrap: wrap; */
-    /* float: left; */
 }
 
 .card:hover {
@@ -350,7 +309,6 @@ section {
 
 .box{
     width: 80% !important;
-    /*background: red; */
     margin-top: 10px;
 }
 
@@ -375,14 +333,12 @@ form{
     background-color: white;
     border: none !important;
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
     padding: 20px;
 }
 
-.checkout
-{
+.checkout{
     text-decoration: none;
     background-color:#29f700;
     padding: 1em 2em;
@@ -394,9 +350,7 @@ form{
 .heading{
     background-color: goldenrod !important; 
 }
-/* th{
-    padding-left: 20px;
-} */
+
 
 /****Userprofile****/
 .navbar-links{
@@ -413,20 +367,36 @@ form{
 /* Checkout*/
 
 .form-check-input:checked {
-    background-color: black; /* Checked color */
-    border-color: goldenrod; /* Checked border color */
+    background-color: black;
+    border-color: goldenrod;
    }
+
+.disabled {
+    pointer-events: none;
+    cursor: default; 
+}
+
+.checkout-card {
+    width: 900px;
+    height: 400px;
+    background-color: white;
+    border: none !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
 
    /* Custom checkmark */
 .form-check-input:checked::before {
-    content: "\2713"; /* Unicode for checkmark */
+    content: "2713"; 
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 1.2em;
-    color: goldenrod !important; /* Checkmark color */
-   }
+    color: goldenrod !important;
+}  
 
    /* Hide the default checkmark */
 .form-check-input {
@@ -434,57 +404,3 @@ form{
     -webkit-appearance: none;
     -moz-appearance: none;
    }
-
-/* .sidebar{
-    background-color: #333;
-    color: white;
-    height: 100%;
-}
-
-.sidebar a{
-    margin-left: 10px;
-    display: block;
-    color: white;
-    padding-bottom: 10px;
-    font-size: 30px;
-    text-decoration: none;
-} */
-
-
-/****Footer****/
-/* footer{
-    width: 100%;
-    height: 50px;
-    background: rgba(0,0,0,.8);
-    margin-top: -30px;
-    color: black;
-    padding: 10px;
-}
-
-footer a {
-    color: white;
-    text-decoration: none;
-    /* text-align: center;
-} */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
