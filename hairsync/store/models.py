@@ -4,7 +4,6 @@ from django.utils.text import slugify
 from django.core.validators import MinValueValidator
 
 # Create your models here.
-
 class CategoryManager(models.Manager):
     def get_all_categories(self):
         return self.all()
@@ -13,7 +12,6 @@ class Category(models.Model):
     category_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     objects = CategoryManager()
-  #  slug = models.SlugField(max_length=255, unique=True, editable=False)
 
     def __str__(self):
         return self.name

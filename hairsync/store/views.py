@@ -695,7 +695,6 @@ def process_checkout(request):
         phone_number_1 = request.POST.get('phone_number_1')
         phone_number_2 = request.POST.get('phone_number_2')
         additional_details = request.POST.get('additional_details')
-        # shipping_option = request.POST.get('shipping_option')
 
         # Create an order in the database
         order = Order.objects.create(
@@ -707,8 +706,6 @@ def process_checkout(request):
             phone_number_1=phone_number_1,
             phone_number_2=phone_number_2,
             additional_details=additional_details,
-           # shipping_option=shipping_option,
-    
         )
 
         # Redirect to the submit page, passing the order ID

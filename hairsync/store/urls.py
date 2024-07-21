@@ -5,8 +5,9 @@ from django.contrib.auth import views as auth_views
 app_name = "store"
 urlpatterns = [
     # Home Page
-    path('', views.index, name='index'), # Home page
+    path('', views.index, name='index'),
 
+    # About Us
     path('about_us/', views.about_us, name='about_us'),
 
     # Register, login, and logout
@@ -16,7 +17,6 @@ urlpatterns = [
     path('login_page/', views.login_page, name='login_page'),
     path('logout/', views.logout_view, name='logout'), # User logout
     path('user_status/', views.check_user_authentication, name='user_status'), # Check User Authentication
-    # path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
 
     # Products Management
     path('products/', views.list_all_products, name='products'),
@@ -55,7 +55,6 @@ urlpatterns = [
     path('userprofile/', views.get_user_profile, name='userprofile'),
     path('users/update/', views.update_user_profile, name='update-user-profile'),
     path('users/orders/', views.list_orders_placed_by_user, name='list-user-orders'),
-    #path('userprofile/', views.userprofile, name='userprofile'),
     
     
     # Shopping Cart
@@ -82,7 +81,6 @@ urlpatterns = [
     # Shipping and Address
     path('shipping-options/', views.get_available_shipping_options, name='get-shipping-options'),
     path('users/addresses/', views.get_user_saved_addresses, name='get-user-addresses'),
-    #path('users/addresses/create/', views.add_address, name='add-address'),
     path('add_address', views.add_address, name='add_address'),
     path('users/addresses/<int:id>/update/', views.update_details_of_address_with_address_id, name='update-address-details'),
     path('users/addresses/<int:id>/delete/', views.delete_address_with_address_id, name='delete-address'),
