@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'store.apps.StoreConfig',
     'django.contrib.admin',
     'django.contrib.auth',
+    'debug_toolbar',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
